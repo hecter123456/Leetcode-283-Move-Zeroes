@@ -15,15 +15,11 @@ class unitest(unittest.TestCase):
         self.assertEqual(Solution().moveZeroes(Input),Output);
 class Solution():
     def moveZeroes(self, nums):
-        if nums == []:
-            return nums
-        n = len(nums)
-        for i in range(n):
-            if nums[i] == 0:
-                for j in range(i+1,n):
-                    if nums[j] != 0:
-                        nums[i], nums[j] = nums[j], nums[i]
-                        break
+        zero = 0
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                nums[i], nums[zero] = nums[zero], nums[i]
+                zero += 1
         return nums
 
 if __name__ == '__main__':

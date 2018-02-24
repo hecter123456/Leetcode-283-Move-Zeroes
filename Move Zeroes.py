@@ -9,20 +9,21 @@ class unitest(unittest.TestCase):
         Input = [0, 1, 0, 3, 12]
         Output = [1, 3, 12, 0, 0]
         self.assertEqual(Solution().moveZeroes(Input),Output);
-
+    def testDoubleZero(self):
+        Input = [0,0,1]
+        Output = [1,0,0]
+        self.assertEqual(Solution().moveZeroes(Input),Output);
 class Solution():
     def moveZeroes(self, nums):
         if nums == []:
             return nums
         n = len(nums)
-        zero = 0
-        for node in nums:
-            if node == 0:
-                zero += 1
-                nums.remove(0)
-        for i in range(zero):
-            nums.append(0)
-        #print(nums)
+        for i in range(n):
+            if nums[i] == 0:
+                for j in range(i+1,n):
+                    if nums[j] != 0:
+                        nums[i], nums[j] = nums[j], nums[i]
+                        break
         return nums
 
 if __name__ == '__main__':
